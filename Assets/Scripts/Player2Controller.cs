@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController2 : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class PlayerController2 : MonoBehaviour
     public float xRange = 8.4f;
     public float yRange = 4.5f;
 
-    void Update(){
+    void Update()
+    {
         // Get player input
         horizontalInput = Input.GetAxis("HorizontalP2");
         verticalInput = Input.GetAxis("VerticalP2");
@@ -19,10 +21,10 @@ public class PlayerController2 : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
         // These if statements keep them from going out of bounds
-        if (transform.position.x < -xRange) {
+        if (transform.position.x < -xRange){
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
-        if (transform.position.x > xRange) {
+        if (transform.position.x > xRange){
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
         if (transform.position.y < -yRange) {
@@ -33,13 +35,16 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other){
+    private Vector3 scaleChange = new Vector3(0.025f, 0.025f, 0.025f);
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.gameObject.CompareTag("Food")){
             Destroy(other.gameObject);
-            transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
-        } else if(other.gameObject.CompareTag("Hazard")){
-            Player2.SetActive(false);
+            transform.localScale += scaleChange;
+        }else if (other.gameObject.CompareTag("Hazard")){
             StartCoroutine(Respawn());
+            Player2.SetActive(false);
         }
     }
 

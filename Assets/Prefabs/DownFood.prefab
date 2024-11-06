@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 296605518958918862}
   - component: {fileID: 2704584325636984787}
   - component: {fileID: 9151395310555856034}
-  - component: {fileID: -6165711497005059243}
+  - component: {fileID: 4430579678384367567}
   m_Layer: 0
   m_Name: DownFood
   m_TagString: Food
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9363cb8c1866624a8d046978c44bdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!60 &-6165711497005059243
+--- !u!60 &4430579678384367567
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

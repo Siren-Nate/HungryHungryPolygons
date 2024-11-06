@@ -19,6 +19,9 @@ public class SpawnManager : MonoBehaviour
     private float startDelay = 2;
     private float spawnInterval = 0.5f;
 
+    public GameObject Player1;
+    public GameObject Player2;
+
     void Start(){
         InvokeRepeating("SpawnDownMovers", startDelay, spawnInterval);
         InvokeRepeating("SpawnLeftMovers", startDelay, spawnInterval);
@@ -48,5 +51,20 @@ public class SpawnManager : MonoBehaviour
         int upIndex = Random.Range(0, upMoving.Length);
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), -spawnPointY, 0);
         Instantiate(upMoving[upIndex], spawnPos, upMoving[upIndex].transform.rotation);
+    }
+
+    void OnTriggerEnter2D(Player1, Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Food"))
+        {
+            Destroy(other.gameObject);
+            transform.localScale += scaleChange;
+        }
+        else if (other.gameObject.CompareTag("Hazard"))
+        {
+            Player1.SetActive(false);
+            StartCoroutine(Respawn());
+
+        }
     }
 }

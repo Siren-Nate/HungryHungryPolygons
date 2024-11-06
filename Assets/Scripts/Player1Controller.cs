@@ -42,11 +42,13 @@ public class PlayerController1 : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other){
-        if (other.gameObject.CompareTag("Food")){
-            Destroy(other.gameObject);
-            transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
-        } else if(other.gameObject.CompareTag("Hazard")){
+    private Vector3 scaleChange = new Vector3(0.025f, 0.025f, 0.025f);
+
+    void OnTriggerEnter2D(Collider2D other){
+            if (other.gameObject.CompareTag("Food")){
+                Destroy(other.gameObject);
+                transform.localScale += scaleChange;
+            }else if(other.gameObject.CompareTag("Hazard")){
             Player1.SetActive(false);
             StartCoroutine(Respawn());
         }
