@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController1 : MonoBehaviour
 {
+    public GameObject Player1;
     public float horizontalInput;
     public float verticalInput;
     public float speed = 6.0f;
@@ -42,9 +43,17 @@ public class PlayerController1 : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        if (other.CompareTag("Food")){
+        if (other.gameObject.CompareTag("Food")){
             Destroy(other.gameObject);
-            transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+            transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+        } else if(other.gameObject.CompareTag("Hazard")){
+            Player1.SetActive(false);
+            StartCoroutine(Respawn());
         }
+    }
+
+    IEnumerator Respawn(){
+        yield return new WaitForSeconds(5);
+        Player1.SetActive(true);
     }
 }
