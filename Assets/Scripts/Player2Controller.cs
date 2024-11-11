@@ -42,14 +42,6 @@ public class PlayerController2 : MonoBehaviour
         if (other.gameObject.CompareTag("Food")){
             Destroy(other.gameObject);
             transform.localScale += scaleChange;
-        }else if (other.gameObject.CompareTag("Hazard")){
-            StartCoroutine(Respawn());
-            Player2.SetActive(false);
         }
-    }
-
-    IEnumerator Respawn(){
-        yield return new WaitForSeconds(5);
-        Player2.SetActive(true);
     }
 }

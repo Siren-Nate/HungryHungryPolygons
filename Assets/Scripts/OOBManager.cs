@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class OOBManager : MonoBehaviour
 {
-    private float verticalBound = 7.0f;
-    private float horizontalBound = 11.0f;
+    private float verticalBound = 35.0f;
+    private float horizontalBound = 55.0f;
 
     void Update()
     {

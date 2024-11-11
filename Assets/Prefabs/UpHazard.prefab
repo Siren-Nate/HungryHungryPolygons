@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2417154310468973099}
   - component: {fileID: -2233091081010445224}
   - component: {fileID: 1052914752688539636}
+  - component: {fileID: -4727761226354699218}
   m_Layer: 0
   m_Name: UpHazard
   m_TagString: Hazard
@@ -161,3 +162,17 @@ PolygonCollider2D:
       - {x: 0, y: -0.25}
       - {x: 0.5, y: 0}
   m_UseDelaunayMesh: 0
+--- !u!114 &-4727761226354699218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776210788932669919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6045ddc2064c5024ba253decc1b8dd5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}

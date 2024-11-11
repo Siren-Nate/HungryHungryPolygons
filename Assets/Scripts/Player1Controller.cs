@@ -44,18 +44,11 @@ public class PlayerController1 : MonoBehaviour
 
     private Vector3 scaleChange = new Vector3(0.025f, 0.025f, 0.025f);
 
-    void OnTriggerEnter2D(Collider2D other){
-            if (other.gameObject.CompareTag("Food")){
-                Destroy(other.gameObject);
-                transform.localScale += scaleChange;
-            }else if(other.gameObject.CompareTag("Hazard")){
-            Player1.SetActive(false);
-            StartCoroutine(Respawn());
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Food")){
+            Destroy(other.gameObject);
+            transform.localScale += scaleChange;
         }
-    }
-
-    IEnumerator Respawn(){
-        yield return new WaitForSeconds(5);
-        Player1.SetActive(true);
     }
 }

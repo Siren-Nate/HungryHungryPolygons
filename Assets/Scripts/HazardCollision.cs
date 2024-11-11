@@ -13,11 +13,6 @@ public class HazardCollision : MonoBehaviour
         Player2 = GameObject.Find("Player2");
     }
 
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.CompareTag("Player1")){
             Player1.SetActive(false);
@@ -29,11 +24,17 @@ public class HazardCollision : MonoBehaviour
     }
 
     IEnumerator Respawn1(){
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Player1.SetActive(true);
+        Player1.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(3);
+        Player1.GetComponent<Collider2D>().enabled = true;
     }
     IEnumerator Respawn2(){
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Player2.SetActive(true);
+        Player2.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(3);
+        Player2.GetComponent<Collider2D>().enabled = true;
     }
 }

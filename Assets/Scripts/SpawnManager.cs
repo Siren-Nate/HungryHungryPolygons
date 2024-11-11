@@ -52,19 +52,4 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), -spawnPointY, 0);
         Instantiate(upMoving[upIndex], spawnPos, upMoving[upIndex].transform.rotation);
     }
-
-    void OnTriggerEnter2D(Player1, Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Food"))
-        {
-            Destroy(other.gameObject);
-            transform.localScale += scaleChange;
-        }
-        else if (other.gameObject.CompareTag("Hazard"))
-        {
-            Player1.SetActive(false);
-            StartCoroutine(Respawn());
-
-        }
-    }
 }
