@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -17,16 +20,14 @@ public class SpawnManager : MonoBehaviour
     public float spawnPointY = 6.0f;
 
     private float startDelay = 2;
-    private float spawnInterval = 0.5f;
-
-    public GameObject Player1;
-    public GameObject Player2;
+    private float spawnInterval = 0.8f;
 
     void Start(){
         InvokeRepeating("SpawnDownMovers", startDelay, spawnInterval);
         InvokeRepeating("SpawnLeftMovers", startDelay, spawnInterval);
         InvokeRepeating("SpawnRightMovers", startDelay, spawnInterval);
         InvokeRepeating("SpawnUpMovers", startDelay, spawnInterval);
+        InvokeRepeating("Countdown", 0, 1);
     }
 
     void SpawnDownMovers(){
@@ -51,5 +52,21 @@ public class SpawnManager : MonoBehaviour
         int upIndex = Random.Range(0, upMoving.Length);
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), -spawnPointY, 0);
         Instantiate(upMoving[upIndex], spawnPos, upMoving[upIndex].transform.rotation);
+    }
+
+    // This section was initially separate code called "Timer", but
+    // disabling the Game Manager object didn't work to stop spawning
+    // things because I used InvokeRepeating.
+
+    private int timeLimit = 61;
+    public TextMeshProUGUI timerText;
+
+    void Countdown(){
+        timeLimit--;
+        timerText.text = "" + timeLimit;
+        if(timeLimit < 1){
+            timerText.text = "GAME OVER";
+            CancelInvoke();
+        }
     }
 }

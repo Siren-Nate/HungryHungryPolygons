@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController2 : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class PlayerController2 : MonoBehaviour
     public float speed = 6.0f;
     public float xRange = 8.4f;
     public float yRange = 4.5f;
+
+    public TextMeshProUGUI score2Text;
+    public int score2 = 0;
 
     void Update()
     {
@@ -42,6 +47,8 @@ public class PlayerController2 : MonoBehaviour
         if (other.gameObject.CompareTag("Food")){
             Destroy(other.gameObject);
             transform.localScale += scaleChange;
+            score2++;
+            score2Text.text = "Player 2: " + score2;
         }
     }
 }

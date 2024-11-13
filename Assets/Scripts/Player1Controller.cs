@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController1 : MonoBehaviour
 {
@@ -10,6 +13,9 @@ public class PlayerController1 : MonoBehaviour
     public float speed = 6.0f;
     public float xRange = 8.4f;
     public float yRange = 4.5f;
+
+    public TextMeshProUGUI score1Text;
+    public int score1 = 0;
 
     // This needs to be here so that the cursor is invisible during gameplay
     void Start() {
@@ -28,10 +34,10 @@ public class PlayerController1 : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         transform.Translate(Vector3.up * verticalInput * Time.deltaTime * speed);
         // These if statements keep them from going out of bounds
-        if (transform.position.x < -xRange) {
+        if (transform.position.x < -xRange){
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
-        if (transform.position.x > xRange) {
+        if (transform.position.x > xRange){
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
         if (transform.position.y < -yRange) {
@@ -49,6 +55,8 @@ public class PlayerController1 : MonoBehaviour
         if (other.gameObject.CompareTag("Food")){
             Destroy(other.gameObject);
             transform.localScale += scaleChange;
+            score1++;
+            score1Text.text = "Player 1 " + score1;
         }
     }
 }
